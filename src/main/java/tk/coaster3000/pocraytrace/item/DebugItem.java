@@ -8,6 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -41,7 +42,7 @@ public class DebugItem extends Item {
 			if (worldIn.isRemote) playerIn.addChatMessage(new TextComponentString("Changed to tracer mode: " + tracer.toString()));
 			return ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn.setStackDisplayName(tracer.name()));
 		} else {
-			TracerResult trace = tracer.trace(worldIn, playerIn.getPosition());
+			TracerResult trace = tracer.trace(worldIn, new BlockPos(MathHelper.floor_double(playerIn.posX),MathHelper.floor_double(playerIn.posY),MathHelper.floor_double(playerIn.posZ)));
 			StringBuilder sb = new StringBuilder();
 
 			if (trace instanceof BoxTracer.BoxTracerResult) {
