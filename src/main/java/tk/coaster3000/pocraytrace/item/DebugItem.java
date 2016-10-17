@@ -59,6 +59,7 @@ public class DebugItem extends Item {
 			}
 
 			FMLCommonHandler.instance().getFMLLogger().info(sb.toString());
+			if (worldIn.isRemote) playerIn.addChatComponentMessage(new TextComponentString(sb.toString()));
 
 
 		}
