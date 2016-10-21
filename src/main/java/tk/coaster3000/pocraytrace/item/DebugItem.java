@@ -17,7 +17,8 @@ import tk.coaster3000.pocraytrace.tracer.TracerResult;
 import tk.coaster3000.pocraytrace.tracer.Tracers;
 
 public class DebugItem extends Item {
-	public DebugItem(String name) {
+	POCRayTraceMod mod;
+	public DebugItem(POCRayTraceMod mod, String name) {
 		super();
 
 		this.setUnlocalizedName(name).setCreativeTab(CreativeTabs.MISC).setRegistryName(name);

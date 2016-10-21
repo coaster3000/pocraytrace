@@ -15,6 +15,6 @@ public class POCRayTraceMod {
 
 	@EventHandler
 	public void init(FMLPreInitializationEvent event) {
-		GameRegistry.register(debugItem = new DebugItem("debug_item"));
+		GameRegistry.register(debugItem = new DebugItem(this, "debug_item"));
 	}
 }
