@@ -14,8 +14,8 @@ public class BoxTracer extends Tracer {
 			return TracerResult.getNullTracer();
 		}
 
-		int north = 0, south = 0, east = 0, west = 0;
 		BlockPos cursor = start.north();
+		int north = 0, south = 0, east = 0, west = 0, up = 0;
 		IBlockState state;
 		while ((state = world.getBlockState(cursor = cursor.north())).getBlock().isAir(state, world, cursor)) {
 			north++;
@@ -35,7 +35,13 @@ public class BoxTracer extends Tracer {
 		while ((state = world.getBlockState(cursor = cursor.west())).getBlock().isAir(state, world, cursor)) {
 			west++;
 		}
-		BlockPos p1 = start.north(north).east(east), p2 = start.south(south).west(west);
+
+		cursor = start;
+		while ((state = world.getBlockState(cursor = cursor.up())).getBlock().isAir(state, world, cursor)) {
+			up++;
+		}
+
+		BlockPos p1 = start.north(north).east(east).up(up), p2 = start.south(south).west(west);
 
 		return new BoxTracerResult(p1, p2);
 	}
