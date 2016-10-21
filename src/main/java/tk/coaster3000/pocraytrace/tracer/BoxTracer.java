@@ -14,24 +14,24 @@ public class BoxTracer extends Tracer {
 			return TracerResult.getNullTracer();
 		}
 
-		BlockPos cursor = start.north();
 		int north = 0, south = 0, east = 0, west = 0, up = 0;
+		BlockPos cursor = start;
 		IBlockState state;
 		while ((state = world.getBlockState(cursor = cursor.north())).getBlock().isAir(state, world, cursor)) {
 			north++;
 		}
 
-		cursor = start.south();
+		cursor = start;
 		while ((state = world.getBlockState(cursor = cursor.south())).getBlock().isAir(state, world, cursor)) {
 			south++;
 		}
 
-		cursor = start.east();
+		cursor = start;
 		while ((state = world.getBlockState(cursor = cursor.east())).getBlock().isAir(state, world, cursor)) {
 			east++;
 		}
 
-		cursor = start.west();
+		cursor = start;
 		while ((state = world.getBlockState(cursor = cursor.west())).getBlock().isAir(state, world, cursor)) {
 			west++;
 		}
