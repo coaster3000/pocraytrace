@@ -28,11 +28,11 @@ public class JMapPlugin implements IClientPlugin, SoftJMapAPI {
 	// API reference
 	private IClientAPI jmAPI = null;
 
-	Map<String, ModWaypoint> waypoints = Maps.newHashMap();
+	private Map<String, ModWaypoint> waypoints = Maps.newHashMap();
 
 	@Override
 	public void initialize(IClientAPI jmClientApi) {
-		jmAPI = jmClientApi;
+		jmAPI = jmClientApi; // Our API hook into JMap
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class JMapPlugin implements IClientPlugin, SoftJMapAPI {
 	public boolean addPoint(String id, String groupName, String pointName, BlockPos position, int color, boolean persistent, int... dimensions) {
 		ModWaypoint point = new ModWaypoint(POCRayTraceMod.MODID, id, groupName, pointName, position, null, color, persistent, dimensions);
 
-		waypoints.put(id, point);
+		waypoints.put(id, point); //Store the point for tracking.
 
 		try {
 			jmAPI.show(point);
@@ -67,7 +67,7 @@ public class JMapPlugin implements IClientPlugin, SoftJMapAPI {
 	@Override
 	public boolean removePoint(String id) {
 		if (hasPoint(id))
-			jmAPI.remove(waypoints.remove(id));
+			jmAPI.remove(waypoints.remove(id)); // Removes from tracking and jmap.
 		else
 			return false;
 		return true;
@@ -75,17 +75,17 @@ public class JMapPlugin implements IClientPlugin, SoftJMapAPI {
 
 	@Override
 	public boolean hasPoint(String id) {
-		return waypoints.containsKey(id);
+		return waypoints.containsKey(id); // Return whether we have that waypoint.
 	}
 
 	@Override
 	public boolean isHooked() {
-		return true;
+		return true; // This is a valid hook!
 	}
 
 	@Override
 	public String[] getPointIDs() {
-		return waypoints.keySet().toArray(new String[waypoints.size()]);
+		return waypoints.keySet().toArray(new String[waypoints.size()]); //Create an array and return points we track within array.
 	}
 
 	private static void log(String msg) {
