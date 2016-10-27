@@ -85,7 +85,7 @@ public class JMapPlugin implements IClientPlugin, SoftJMapAPI {
 
 	@Override
 	public String[] getPointIDs() {
-		return new String[0];
+		return waypoints.keySet().toArray(new String[waypoints.size()]);
 	}
 
 	private static void log(String msg) {
